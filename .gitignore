@@ -1,0 +1,11 @@
+*.pyc
+*.draft
+*.private
+*~
+\#*.*\#
+*.swp
+*.pid
+update.log
+output
+gnupg/*
+ssh/*

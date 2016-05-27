@@ -1,5 +1,5 @@
 
-var openpgp = $.getScript('/theme/js/openpgp.js');
+var openpgp = $.getScript('openpgp.js');
 
 openpgp.initWorker({ path: '/theme/js/openpgp.worker.js' })
 

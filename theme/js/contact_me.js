@@ -1,7 +1,8 @@
 
-var openpgp = $.getScript('openpgp.js');
-
-openpgp.initWorker({ path: '/theme/js/openpgp.worker.js' })
+//var openpgp = $.getScript('openpgp.js');
+//openpgp.initWorker({ path: '/theme/js/openpgp.worker.js' })
+var openpgp = $.getScript('https://ioerrror/github.io/jacobappelbaum.net/themes/js/openpgp.js');
+openpgp.initWorker({ path: 'https://ioerrror/github.io/jacobappelbaum.net/theme/js/openpgp.worker.js' })
 
 var pubkey = `-----BEGIN PGP PUBLIC KEY BLOCK-----
 

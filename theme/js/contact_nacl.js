@@ -23,8 +23,8 @@ function loadClientKeypair(keypair) {
 }
 
 function storeClientKeypair() {
-  var key = nacl.to_hex(clientKeypair.boxPk);
-  key.concat(nacl.to_hex(clientKeypair.boxSk));
+  var key = nacl.to_hex(clientKeypair.boxPk) +
+            nacl.to_hex(clientKeypair.boxSk);
   return key;
 }
 

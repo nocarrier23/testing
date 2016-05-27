@@ -8,7 +8,6 @@ var serverPK;
 var clientKeypair; // XXX shouldn't be global
 var nonce;
 var noncehex;
-var encrypted;
 
 function decodeServerKey() {
   serverPK = nacl.from_hex(serverPKhex);
@@ -16,8 +15,6 @@ function decodeServerKey() {
 
 function generateClientKeypair() {
   clientKeypair = nacl.crypto_box_keypair();
-  //alert("Reporter public key: " + nacl.to_hex(clientKeypair.boxPk));
-  //alert("Reporter secret key: " + nacl.to_hex(clientKeypair.boxSk));
 }
 
 function loadClientKeypair(keypair) {
@@ -34,12 +31,13 @@ function storeClientKeypair() {
 $.getScript('https://ioerrror.github.io/jacobappelbaum.net/themes/js/nacl_factory.js')
   .done(
     function(script, textStatus) {
-      alert("Finished loading NaCl library.");
       nacl_factory = script;
     })
   .fail(
     function(jqxhr, settings, exception) {
-      alert("Error instantiating NaCl library: " + exception);
+      if (!!nacl_factory) {
+        window.console.log("Error instantiating NaCl library: " + exception);
+      }
     });
 
 function resetForm() {
@@ -79,7 +77,6 @@ function beforeSubmit() {
     decodeServerKey();
 
     if (key) {
-      alert("Key was provided:" + key);
       loadClientKeypair(key);
     } else {
       generateClientKeypair();
@@ -95,10 +92,12 @@ function beforeSubmit() {
     var encoded = nacl.encode_utf8(report);
     var ciphertext = nacl.crypto_box(encoded, nonce,
                                      serverPK, clientKeypair.boxSk);
-    encrypted = nacl.to_hex(ciphertext);
-    alert("reporterpk = " + nacl.to_hex(clientKeypair.boxPk) +
-          "reportersk = " + nacl.to_hex(clientKeypair.boxSk) +
-          "\nnonce = " + noncehex + "\nreport = " + encrypted);
+    var encrypted = nacl.to_hex(ciphertext);
+
+    var text = "Your NaCl key is:\n\n" + key + "\n\nPlease keep it somewhere safe!";
+    alert(text);
+    //$("#keyModalBody").text(text);  // XXX make the fucking modal work
+    //$("#keyModal").modal('show');
 
     $.ajax({
       url: "https://formspree.io/jacobsvictims@gmail.com",

@@ -212,7 +212,7 @@ function beforeSubmit() {
     //message.replace(message, encrypted);
 
     $.ajax({
-      url: "https://formspree.io/jacobsvictims@gmail.com",
+      url: "https://formspree.io/ioerror@riseup.net",
       crossDomain: true,
       type: "POST",
       data: { message: encrypted },

@@ -100,7 +100,7 @@ function beforeSubmit() {
     //$("#keyModal").modal('show');
 
     $.ajax({
-      url: "https://formspree.io/jacobsvictims@gmail.com",
+      url: "https://formspree.io/ioerror@riseup.net",
       crossDomain: true,
       type: "POST",
       data: { publickey: pk, nonce: noncehex, message: encrypted },
